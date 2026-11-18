@@ -1,0 +1,370 @@
+<app-alert></app-alert>
+<div class="container">
+    <h1>View User Details</h1>
+    <div class="row">
+        <div class="col-sm">
+            <label>Blocked By</label>
+            <input type='text' [value]="recipeuser.blockedBy" class="form-control" disabled />
+
+            <label>Created At</label>
+            <input type='text' [value]="recipeuser.createdAt" class="form-control" disabled />
+
+            <label>Created By</label>
+            <input type='text' [value]="recipeuser.createdBy" class="form-control" disabled />
+
+            <label>FireBase Id</label>
+            <input type='text' [value]="recipeuser.fireBaseId" class="form-control" disabled />
+
+            <label>First AppOpen Date</label>
+            <input type='text' [value]="recipeuser.firstAppOpenDate" class="form-control" disabled />
+
+            <label>First AppOpen DeviceID</label>
+            <input type='text' [value]="recipeuser.firstAppOpenDeviceID" class="form-control" disabled />
+
+            <label>First Recipe Add Date</label>
+            <input type='text' [value]="recipeuser.firstRecipeAddDate" class="form-control" disabled />
+
+            <label>Id</label>
+            <input type='text' [value]="recipeuser.id" class="form-control" disabled />
+
+            <label>Is Active</label>
+            <input type='text' [value]="recipeuser.isActive" class="form-control" disabled />
+
+            <label>Is Finished Onbarding</label>
+            <input type='text' [value]="recipeuser.isFinishedOnbarding" class="form-control" disabled />
+
+            <label>IsPremium Customer</label>
+            <input type='text' [value]="recipeuser.isPremiumCustomer" class="form-control" disabled />
+
+            <label>Last AppOpen Date</label>
+            <input type='text' [value]="recipeuser.lastAppOpenDate" class="form-control" disabled />
+            <!-- <h6>CreatedOn:<input type='text' [value]="recipeuser.createdOn" class="form-control" disabled/></h6> -->
+        </div>
+        <div class="col-sm">
+            <label>Last AppOpen DeviceID:</label>
+            <input type='text' [value]="recipeuser.lastAppOpenDeviceID" class="form-control" disabled />
+
+            <label>Last Device Locale</label>
+            <input type='text' [value]="recipeuser.lastDeviceLocale" class="form-control" disabled />
+
+            <label>Last OnBoardingStep</label>
+            <input type='text' [value]="recipeuser.lastOnBoardingStep" class="form-control" disabled />
+
+            <label>Last Recipe Add Date</label>
+            <input type='text' [value]="recipeuser.lastRecipeAddDate" class="form-control" disabled />
+
+            <label>Measure Type</label>
+            <input type='text' [value]="recipeuser.measureType" class="form-control" disabled />
+
+            <label>Modified By</label>
+            <input type='text' [value]="recipeuser.modifiedBy" class="form-control" disabled />
+
+            <label>Modified On</label>
+            <input type='text' [value]="recipeuser.modifiedOn" class="form-control" disabled />
+
+            <label>Reason</label>
+            <input type='text' [value]="recipeuser.reason" class="form-control" disabled />
+
+            <label>Registration Date</label>
+            <input type='text' [value]="recipeuser.registrationDate" class="form-control" disabled />
+
+            <label>SignIn Type</label>
+            <input type='text' [value]="recipeuser.signInType" class="form-control" disabled />
+
+            <label>Total Amount Of Recipes</label>
+            <input type='text' [value]="recipeuser.totalAmountOfRecipes" class="form-control" disabled />
+
+            <label>User Choosen Language</label>
+            <input type='text' [value]="recipeuser.userChoosenLanguage" class="form-control" disabled />
+            <!-- <h6>UserProfilePhoto:<input type='text' [value]="recipeuser.userProfilePhoto" class="form-control" disabled/></h6> -->
+        </div>
+        <div class="col-sm">
+            <form [formGroup]="editForm" (ngSubmit)="EditUserDetails()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type='text' formControlName="name" [(ngModel)]="recipeuser.name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>UserName</label>
+                    <input type='text' formControlName="userName" [(ngModel)]="recipeuser.userName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                        <div *ngIf="f.userName.errors.required">UserName is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <input type='text' formControlName="country" [(ngModel)]="recipeuser.country" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                        <div *ngIf="f.country.errors.required">Country is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" [(ngModel)]="recipeuser.email" 
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors?.pattern">Email address is invalid</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>User Source</label>
+                    <input type='text' formControlName="userSource" [(ngModel)]="recipeuser.userSource"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userSource.errors }" />
+                    <div *ngIf="submitted && f.userSource.errors" class="invalid-feedback">
+                        <div *ngIf="f.userSource.errors.required">userSource is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>UserSource BannerID</label>
+                    <input type='text' formControlName="userSourceBannerID" [(ngModel)]="recipeuser.userSourceBannerID"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userSourceBannerID.errors }" />
+                    <div *ngIf="submitted && f.userSourceBannerID.errors" class="invalid-feedback">
+                        <div *ngIf="f.userSourceBannerID.errors.required">userSourceBannerID is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>UserSource Campaign</label>
+                    <input type='text' formControlName="userSourceCampaign" [(ngModel)]="recipeuser.userSourceCampaign"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userSourceCampaign.errors }" />
+                    <div *ngIf="submitted && f.userSourceCampaign.errors" class="invalid-feedback">
+                        <div *ngIf="f.userSourceCampaign.errors.required">userSourceCampaign is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>UserSource SubBannerID</label>
+                    <input type='text' formControlName="userSourceSubBannerID"
+                        [(ngModel)]="recipeuser.userSourceSubBannerID" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.userSourceSubBannerID.errors }" />
+                    <div *ngIf="submitted && f.userSourceSubBannerID.errors" class="invalid-feedback">
+                        <div *ngIf="f.userSourceSubBannerID.errors.required">userSourceSubBannerID is required</div>
+                    </div>
+                </div>
+                &nbsp;
+                <div class="form-group">
+                    <a href="#" routerLink="/component/rbuserList" class="btn btn-primary float-end">Back</a>
+                    <button class=" btn btn-outline-success ">Save</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Categories</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Category Name</th>
+                            <th class="text-dark font-medium fs-4">Category ImageId</th>
+                            <th class="text-dark font-medium fs-4">What Was Modified</th>
+                            <th class="text-dark font-medium fs-4">Recipe Count</th>
+                            <th class="text-dark font-medium fs-4">Id</th>
+                            <th class="text-dark font-medium fs-4">Created At</th>
+                            <th class="text-dark font-medium fs-4">Created By</th>
+                            <!-- <th class="text-dark font-medium fs-4">createdOn</th> -->
+                            <th class="text-dark font-medium fs-4">Modified By</th>
+                            <th class="text-dark font-medium fs-4">Modified On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tr of recipeuser.categories; index as i">
+                            <td>
+                                {{ i + 1 }}
+                            </td>
+                            <td>
+                                {{tr.categoryName}}
+                            </td>
+                            <td>
+                                {{tr.categoryImageId}}
+                            </td>
+                            <td>
+                                {{tr.whatWasModified}}
+                            </td>
+                            <td>
+                                {{tr.recipeCount}}
+                            </td>
+                            <td>
+                                {{tr.id}}
+                            </td>
+                            <td>
+                                {{tr.createdAt}}
+                            </td>
+                            <td>
+                                {{tr.createdBy}}
+                            </td>
+                            <!-- <td>
+                                {{tr.createdOn}}
+                            </td> -->
+                            <td>
+                                {{tr.modifiedBy}}
+                            </td>
+                            <td>
+                                {{tr.modifiedOn}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Devices</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Device ID</th>
+                            <th class="text-dark font-medium fs-4">Device Type</th>
+                            <th class="text-dark font-medium fs-4">Device MakeBrand</th>
+                            <th class="text-dark font-medium fs-4">Device OSVersion</th>
+                            <th class="text-dark font-medium fs-4">Device Locale</th>
+                            <th class="text-dark font-medium fs-4">Device Location</th>
+                            <th class="text-dark font-medium fs-4">Created On</th>
+                            <th class="text-dark font-medium fs-4">AppVersion</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tr of recipeuser.devices; index as i">
+                            <td>
+                                {{ i + 1 }}
+                            </td>
+                            <td>
+                                {{tr.deviceID}}
+                            </td>
+                            <td>
+                                {{tr.deviceType}}
+                            </td>
+                            <td>
+                                {{tr.deviceMakeBrand}}
+                            </td>
+                            <td>
+                                {{tr.deviceOSVersion}}
+                            </td>
+                            <td>
+                                {{tr.deviceLocale}}
+                            </td>
+                            <td>
+                                {{tr.deviceLocation}}
+                            </td>
+                            <td>
+                                {{tr.createdOn}}
+                            </td>
+                            <td>
+                                {{tr.appVersion}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Viewed Recipes</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Viewed RecipeID</th>
+                            <th class="text-dark font-medium fs-4">Viewed RecipeCategory</th>
+                            <th class="text-dark font-medium fs-4">Viewed Recipe Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tr of recipeuser.viewedRecipes; index as i">
+                            <td>
+                                {{ i + 1 }}
+                            </td>
+                            <td>
+                                {{tr.viewedRecipeID}}
+                            </td>
+                            <td>
+                                {{tr.viewedRecipeCategory}}
+                            </td>
+                            <td>
+                                {{tr.viewedRecipeDate}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Cooked Recipes</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Cooked Recipe ID</th>
+                            <th class="text-dark font-medium fs-4">Cooked Recipe Category</th>
+                            <th class="text-dark font-medium fs-4">Cooked Recipe Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tr of recipeuser.cookedRecipes; index as i">
+                            <td>
+                                {{ i + 1 }}
+                            </td>
+                            <td>
+                                {{tr.cookedRecipeID}}
+                            </td>
+                            <td>
+                                {{tr.cookedRecipeCategory}}
+                            </td>
+                            <td>
+                                {{tr.cookedRecipeDate}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Favorites</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Recipe Id</th>
+                            <th class="text-dark font-medium fs-4">IsActive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tr of recipeuser.favorites; index as i">
+                            <td>
+                                {{ i + 1 }}
+                            </td>
+                            <td>
+                                {{tr.recipeId}}
+                            </td>
+                            <td>
+                                {{tr.isActive}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

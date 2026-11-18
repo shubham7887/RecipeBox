@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">List of RecipeBox Users</h4>
+        <app-user-management-filter (valueChange)='filterData($event)'></app-user-management-filter>
+        <!-- <button class="btn btn-sm btn-outline-primary float-end" (click)="open(mymodal)">Create user</button> -->
+        &nbsp;
+         <div class="table-responsive">
+          <table class="table table-hover table-bordered align-middle text-nowrap">
+            <thead>
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th class="text-dark font-medium fs-4">Name</th>
+                <th class="text-dark font-medium fs-4">Email</th>
+                <th class="text-dark font-medium fs-4">UserName</th>
+                <th class="text-dark font-medium fs-4">Country</th>
+                <th class="text-dark font-medium fs-4">Registration Date </th>
+                <th class="text-dark font-medium fs-4">Last AppOpen Date</th>
+                <th class="text-dark font-medium fs-4">Last Recipe Add Date</th>
+                <th class="text-dark font-medium fs-4">Last DeviceOS</th>
+                <th class="text-dark font-medium fs-4">Last OnBoarding Step</th>
+                <th class="text-dark font-medium fs-4">User ource</th>
+                <th class="text-dark font-medium fs-4">User Choosen Language</th>
+                <th class="text-dark font-medium fs-4">Total Amount Of Recipes</th>
+                <th class="text-dark font-medium fs-4">HasActivePackage</th>
+                <th class="text-dark font-medium fs-4">Package Name</th>
+                <th class="text-dark font-medium fs-4">FireBaseId</th>
+                <th class="text-dark font-medium fs-4">AppVersion</th>
+                <th class="text-dark font-medium fs-4" width="250px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ts of rbuserList;index as i">
+                <!-- <th scope="row">{{ i + 1 }}</th> -->
+                <td class="fs-4">{{ts.name}}</td>
+                <td class="fs-4">{{ts.email}}</td>
+                <td class="fs-4">{{ts.userName}}</td>
+                <td class="fs-4">{{ts.country}}</td>
+                <!-- <td class="fs-4">{{ts.registrationDate =="0001-01-01T00:00:00Z"?"":ts.registrationDate | date: 'dd/MM/yyyy'}}</td> -->
+                <!-- <td class="fs-4" *ngIf ts.registrationDate !="0001-01-01T00:00:00Z">{{ts.registrationDate | date: 'dd/MM/yyyy'}}</td> -->
+                <td class="fs-4">{{ts.registrationDate | date: 'MM/dd/YY HH:MM:SS'}}</td>
+                <td class="fs-4">{{ts.lastAppOpenDate | date: 'MM/dd/YY HH:MM:SS'}}</td>
+                <td class="fs-4">{{ts.lastRecipeAddDate | date: 'MM/dd/YY HH:MM:SS'}}</td>
+                <td class="fs-4">{{ts.lastDeviceOS}}</td>
+                <td class="fs-4">{{ts.lastOnBoardingStep}}</td>
+                <td class="fs-4">{{ts.userSource}}</td>
+                <td class="fs-4">{{ts.userChoosenLanguage}}</td>
+                <td class="fs-4">{{ts.totalAmountOfRecipes}}</td>
+                <td class="fs-4">{{ts.hasActivePackage}}</td>
+                <td class="fs-4">{{ts.packageName}}</td>
+                <td class="fs-4">{{ts.fireBaseId}}</td>
+                <td class="fs-4">{{ts.appVersion}}</td>
+                <td>
+                  <!-- <a  (click)="ViewUserDetail(ts.id);" class="btn btn-info">View</a> &nbsp; -->
+                  <!-- <a href="#" (click)="EditUserDetail(ts.id);"  class="btn btn-primary">Edit</a>&nbsp; -->
+                  <a href="#" [routerLink]="['/component/rbuserDetail/',ts.id]" class="btn btn-info">View</a> &nbsp;
+                  <a href="#" [routerLink]="['/component/rbuserDetail/',ts.id]" class="btn btn-primary">Edit</a>&nbsp;
+                  <!-- <button type="button" (click)="deletePost(ts.id)" class="btn btn-danger">Delete</button> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="GetRBUserList()"
+  aria-label="Default pagination"></ngb-pagination>

@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">List of Recipes</h4>
+                <app-recipe-management-filter (valueChange)='filterRecipeData($event)'></app-recipe-management-filter>
+                <!-- <button class="btn btn-sm btn-outline-primary float-end" (click)="open(mymodal)">Create user</button> -->
+                &nbsp;
+                 <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle text-nowrap">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">#</th> -->
+                                <th class="text-dark font-medium fs-4">RecipeId</th>
+                                <th class="text-dark font-medium fs-4">Recipe Title</th>
+                                <th class="text-dark font-medium fs-4">Recipe Categories</th>
+                                <th class="text-dark font-medium fs-4">Amount of Views</th>
+                                <th class="text-dark font-medium fs-4">Number of photos</th>
+                                <th class="text-dark font-medium fs-4">AddingMethod</th>
+                                <th class="text-dark font-medium fs-4">Is Private</th>
+                                <th class="text-dark font-medium fs-4">User email</th>
+                                <!-- <th class="text-dark font-medium fs-4">User Person Name</th> -->
+                                <th class="text-dark font-medium fs-4">Recipe Language</th>
+                                <th class="text-dark font-medium fs-4">Copied From RecipeID</th>
+                                <th class="text-dark font-medium fs-4">Created By</th>
+                                <th class="text-dark font-medium fs-4">Modified On</th>
+                                <th class="text-dark font-medium fs-4" width="250px">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ts of recipeList;index as i">
+                            
+                                <!-- <th scope="row">{{ i + 1 }}</th> -->
+                                <td class="fs-4">{{ts.id}}</td>
+                                <td class="fs-4">{{ts.title}}</td>
+                                <td class="fs-4">{{ts.recipeCategories}}</td>
+                                <td class="fs-4">{{ts.amountOfViews}}</td>
+                                <td class="fs-4">{{ts.numberofphotos}}</td>
+                                <td class="fs-4">{{ts.addingMethod}}</td>
+                                <td class="fs-4">{{ts.isPrivate}}</td>
+                                <td class="fs-4">{{ts.userEmail}}</td>
+                                <td class="fs-4">{{ts.recipeLanguage}}</td>
+                                <td class="fs-4">{{ts.copiedFromRecipeID}}</td>
+                                <td class="fs-4">{{ts.createdBy}}</td>
+                                <td class="fs-4">{{ts.modifiedOn| date: 'MM/dd/YY HH:MM:SS'}}</td>
+                                <td>
+                                    <!-- <a  (click)="ViewUserDetail(ts.id);" class="btn btn-info">View</a> &nbsp; -->
+                                    <!-- <a href="#" (click)="EditUserDetail(ts.id);"  class="btn btn-primary">Edit</a>&nbsp; -->
+                                    <!-- <a href="#" [routerLink]="['/component/rbuserDetail/',ts.id]"
+                                        class="btn btn-info">View</a> &nbsp;
+                                    <a href="#" [routerLink]="['/component/rbuserDetail/',ts.id]"
+                                        class="btn btn-primary">Edit</a>&nbsp; -->
+                                    <!-- <button type="button" (click)="deletePost(ts.id)" class="btn btn-danger">Delete</button> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="GetRecipeList()"
+    aria-label="Default pagination"></ngb-pagination>

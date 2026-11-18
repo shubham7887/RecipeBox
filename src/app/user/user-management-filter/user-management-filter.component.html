@@ -1,0 +1,208 @@
+<h5>Filter By:</h5>
+<div class="container-fluid">
+  <form [formGroup]="filterForm" (ngSubmit)="SearchByfilterValue()">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="UserName">UserName:</label>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="UserName">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="Email">Email:</label>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="Email">
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="Name">Name:</label>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="Name">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="FirebaseId">FirebaseId:</label>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="FirebaseId">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="PackageName">PackageName:</label>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="PackageName">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="Source">Source:</label>
+          </div>
+          <div class="col">
+            <input type="number" max="4" min="1" class="form-control" formControlName="Source">
+          </div>
+        </div>
+      </div>
+    </div>
+    &nbsp;
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="Country">Country:</label>
+          </div>
+          <div class="col">
+            <select formControlName="Country" class="myselect">
+              <option disabled selected>Select </option>
+              <option *ngFor='let c of countryData' [ngValue]="c.country">
+                {{c.country}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="UserChoosenLanguage">Language:</label>
+          </div>
+          <div class="col">
+            <select formControlName="UserChoosenLanguage" class="myselect">
+              <option disabled selected>Select</option>
+              <option *ngFor='let Language of LanguageList' [ngValue]="Language.name">
+                {{Language.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="DeviceOs">DeviceOS:</label>
+          </div>
+          <div class="col">
+            <select formControlName="DeviceOS" class="myselect">
+              <option disabled selected>Select </option>
+              <option>IOs </option>
+              <option>Android</option>
+              <!-- <option *ngFor='let Language of LanguageList' [ngValue]="Language.name">
+              {{Language.name}}
+            </option> -->
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="LastOnBoardingStep">LastOnBoardingStep:</label>
+          </div>
+          <div class="col">
+            <select formControlName="LastOnBoardingStep" class="myselect">
+              <option disabled selected> Select </option>
+              <option *ngFor='let step of enumKeys| keyvalue' [ngValue]="step.key">
+                {{step.key}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="Registrationdatepicker">Registration date:</label>
+          </div>
+          <div class="col">
+            <div class="row row-cols-sm-auto">
+              <div class="col-12">
+                <div class="dp-hidden position-absolute">
+                  <div class="input-group">
+                    <input name="Registrationdatepicker" class="form-control" ngbDatepicker
+                      #Registrationdatepicker="ngbDatepicker" [autoClose]="'outside'"
+                      (dateSelect)="onRegDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                      outsideDays="hidden" [startDate]="regfromDate!" tabindex="-1">
+                    <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day" [class.focused]="focused"
+                        [class.faded]="isRegDateHovered(date) || isRegDateInside(date)"
+                        [class.range]="isRegDateRange(date)" (mouseenter)="reghoveredDate = date"
+                        (mouseleave)="reghoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input #RegFromDate class="form-control" placeholder="From" name="RegFromDate"
+                    [value]="formatter.format(regfromDate)"
+                    (input)="regfromDate = validateRegDateInput(regfromDate, RegFromDate.value)">
+                  <button class="btn btn-sm btn-outline-secondary calendar" (click)="Registrationdatepicker.toggle()"
+                    type="button">📅</button>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="input-group">
+                  <input #RegToDate class="form-control" placeholder="To" name="RegToDate"
+                    [value]="formatter.format(regtoDate)"
+                    (input)="regtoDate = validateRegDateInput(regtoDate, RegToDate.value)">
+                  <button class="btn btn-sm btn-outline-secondary calendar" (click)="Registrationdatepicker.toggle()"
+                    type="button">📅</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="col">
+            <label for="LastAppOpendatepicker">LastAppOpen date:</label>
+          </div>
+          <div class="col">
+            <div class="row row-cols-sm-auto">
+              <div class="col-12">
+                <div class="dp-hidden position-absolute">
+                  <div class="input-group">
+                    <input name="LastAppOpendatepicker" class="form-control" ngbDatepicker
+                      #LastAppOpendatepicker="ngbDatepicker" [autoClose]="'outside'"
+                      (dateSelect)="onAppOpenDateSelection($event)" [displayMonths]="2" [dayTemplate]="o"
+                      outsideDays="hidden" [startDate]="appOpenfromDate!" tabindex="-1">
+                    <ng-template #o let-date let-focused="focused">
+                      <span class="custom-day" [class.focused]="focused"
+                        [class.faded]="isAppOpenDateHovered(date) || isAppOpenDateInside(date)"
+                        [class.range]="isAppOpenDateRange(date)" (mouseenter)="appOpenhoveredDate = date"
+                        (mouseleave)="appOpenhoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input #AppOpenFromDate class="form-control" placeholder="From" name="AppOpenFromDate"
+                    [value]="formatter.format(appOpenfromDate)"
+                    (input)="appOpenfromDate = validateAppOpenDateInput(appOpenfromDate, AppOpenFromDate.value)">
+                  <button class="btn btn-sm btn-outline-secondary calendar" (click)="LastAppOpendatepicker.toggle()"
+                    type="button">📅</button>
+                </div>
+
+              </div>
+              <div class="col-12">
+                <div class="input-group">
+                  <input #AppOpenToDate class="form-control" placeholder="To" name="AppOpenToDate"
+                    [value]="formatter.format(appOpentoDate)"
+                    (input)="appOpentoDate = validateAppOpenDateInput(appOpentoDate, AppOpenToDate.value)">
+                  <button class="btn btn-sm btn-outline-secondary calendar" (click)="LastAppOpendatepicker.toggle()"
+                    type="button">📅</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group ">
+      <button class=" btn btn-outline-primary">Search</button>&nbsp;
+      <input type="button" value="clear" class="btn btn-outline-secondary" (click)="Reset()">
+    </div>
+  </form>
+</div>

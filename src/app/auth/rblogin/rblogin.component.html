@@ -1,0 +1,42 @@
+<div class="login">
+  <div class="signin shadow-all">
+    <div class="logo">
+      <img class="scale-to-fit" src="https://dcassetcdn.com/design_img/822484/116689/116689_4868561_822484_image.png" />
+    </div>
+
+    <h2>Sign In</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="loginAdmin()">
+      <div class="form-group">
+        <div class="email">
+          <input type="text" formControlName="email" placeholder="Email or Phone *" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" autocomplete="email" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+          </div>
+        </div>
+        <div class="password">
+          <input type="password" formControlName="password" placeholder="Password *" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="password" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+        <div class="row signin-links">
+          <button [disabled]="loading" class="btn btn-signin align-right">
+            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+            Sign In
+          </button>
+        </div>
+        <!-- <div class="row signin-links">
+          <div class="align-left create-account">
+              <a routerLink="/register" class="btn-link">Create an account</a>
+          </div>
+        </div> -->
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <h1>Powered By Receipe Box</h1>
+  </footer>
+</div>
