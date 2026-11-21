@@ -44,3 +44,15 @@
   }
   
   
+.filter-panel {
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+
+  .form-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+}
